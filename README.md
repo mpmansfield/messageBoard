@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Message Board Rails project for experimenting with Devise and Pundit for Authentication and Authorization
 
-Things you may want to cover:
+## Ruby version
+2.7.0
 
-* Ruby version
+## Database creation
+rails db:create db:migrate db:seed (seed is optional)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
