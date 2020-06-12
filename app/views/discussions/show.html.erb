@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_discussion_path(@discussion) %> |
+<%= link_to "Back to #{Board.find(@discussion.board_id).topic}", board_path(@discussion.board_id) %>
+
+<h1>
+  <%= @discussion.title %>
+</h1>
+
+<p>
+  <%= "Posted in #{Board.find(@discussion.board_id).topic} by #{User.find(@discussion.user_id).email}" %>
+</p>
+
+<p>
+  <strong>Prompt:</strong>
+  <%= @discussion.prompt %>
+</p>
+
+
+<%= link_to 'New Comment', new_comment_path(:discussion_id => @discussion.id, :user_id => current_user.id) %>
+
+<p>
+  <strong>Comments:</strong>
+  <br/>
+  <% @comments = Comment.all.select { |c| c.discussion_id == @discussion.id } %>
+  <% @comments.each do |comment| %>
+    <%= "#{comment.message}" %>
+    <%= "- #{User.find(comment.user_id).email}" %>
+    <br/>
+  <% end %>
+</p>

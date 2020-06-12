@@ -1,0 +1,18 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: messageBoard
+      POSTGRES_USER: messageBoard
+      POSTGRES_DB: messageBoard
+    ports:
+      - '5342:5432'
+
+  web:
+    build: .
+    image: messageboard
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
