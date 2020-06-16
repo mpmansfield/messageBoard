@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   before_action :set_board, only: [:show, :edit, :update, :destroy]
 
   # GET /boards
@@ -26,6 +26,7 @@ class BoardsController < ApplicationController
   # POST /boards.json
   def create
     @board = Board.new(board_params)
+    authorize @board
 
     respond_to do |format|
       if @board.save
