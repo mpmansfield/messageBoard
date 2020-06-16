@@ -15,7 +15,7 @@ class ApplicationPolicy
   end
 
   def create?
-    false
+    true
   end
 
   def new?
@@ -33,6 +33,23 @@ class ApplicationPolicy
   def destroy?
     false
   end
+
+  def viewer?
+    user&.role_viewer?
+  end
+
+  def author?
+    user&.role_author?
+  end
+
+  def moderator?
+    user&.role_moderator?
+  end
+
+  def administrator?
+    user&.role_administrator?
+  end
+  
 
   class Scope
     attr_reader :user, :scope

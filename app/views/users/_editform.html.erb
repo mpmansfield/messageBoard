@@ -17,11 +17,9 @@
   <br/>
   <br/>
 
-  <p>Author = 0, Moderator = 1, Admin = 2, Viewer = 3 (Default)</p>
-
   <div class="field">
     <%= form.label :role %>
-    <%= form.number_field :role, :max => 3, :min => 0 %>
+    <%= form.select :role, ['author', 'moderator', 'administrator', 'viewer'] %>
   </div>
 
   <div class="actions">

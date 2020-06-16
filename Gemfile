@@ -57,3 +57,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #Use devise for authentication/pundit for authorization
 gem 'devise'
 gem 'pundit'
+
+gem 'omniauth-google-oauth2'
+gem 'dotenv-rails', groups: [:development, :test]
+
+gem 'activerecord-session_store'
