@@ -15,16 +15,19 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new
+    authorize @comment
   end
 
   # GET /comments/1/edit
   def edit
+    authorize @comment
   end
 
   # POST /comments
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
+    authorize @comment
 
     respond_to do |format|
       if @comment.save
@@ -40,6 +43,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
+    authorize @comment
     respond_to do |format|
       if @comment.update(comment_params)
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
@@ -54,6 +58,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    authorize @comment
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }

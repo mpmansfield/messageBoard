@@ -16,10 +16,12 @@ class BoardsController < ApplicationController
   # GET /boards/new
   def new
     @board = Board.new
+    authorize @board
   end
 
   # GET /boards/1/edit
   def edit
+    authorize @board
   end
 
   # POST /boards
@@ -42,6 +44,7 @@ class BoardsController < ApplicationController
   # PATCH/PUT /boards/1
   # PATCH/PUT /boards/1.json
   def update
+    authorize @board
     respond_to do |format|
       if @board.update(board_params)
         format.html { redirect_to @board, notice: 'Board was successfully updated.' }
@@ -56,6 +59,7 @@ class BoardsController < ApplicationController
   # DELETE /boards/1
   # DELETE /boards/1.json
   def destroy
+    authorize @board
     @board.destroy
     respond_to do |format|
       format.html { redirect_to boards_url, notice: 'Board was successfully destroyed.' }
