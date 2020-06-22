@@ -15,16 +15,19 @@ class DiscussionsController < ApplicationController
   # GET /discussions/new
   def new
     @discussion = Discussion.new
+    authorize @discussion
   end
 
   # GET /discussions/1/edit
   def edit
+    authorize @discussion
   end
 
   # POST /discussions
   # POST /discussions.json
   def create
     @discussion = Discussion.new(discussion_params)
+    authorize @discussion
 
     respond_to do |format|
       if @discussion.save
@@ -40,6 +43,7 @@ class DiscussionsController < ApplicationController
   # PATCH/PUT /discussions/1
   # PATCH/PUT /discussions/1.json
   def update
+    authorize @discussion
     respond_to do |format|
       if @discussion.update(discussion_params)
         format.html { redirect_to @discussion, notice: 'Discussion was successfully updated.' }
@@ -54,6 +58,7 @@ class DiscussionsController < ApplicationController
   # DELETE /discussions/1
   # DELETE /discussions/1.json
   def destroy
+    authorize @discussion
     @discussion.destroy
     respond_to do |format|
       format.html { redirect_to discussions_url, notice: 'Discussion was successfully destroyed.' }

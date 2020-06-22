@@ -1,18 +1,25 @@
-class BoardPolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
+# frozen_string_literal: true
 
-    def create?
-      if administrator?
-        return true
-      else
-        return false
-      end
-    end
+class BoardPolicy < UserActionPolicy
 
-
-
+  def new?
+    administrator?
   end
+
+  def create?
+    administrator?
+  end
+
+  def edit?
+    administrator? || moderator?
+  end
+
+  def update?
+    administrator? || moderator?
+  end
+
+  def destroy?
+    administrator?
+  end
+
 end
