@@ -1,0 +1,44 @@
+<h1>Additional Information</h1>
+
+<% @user = User.find_by_id(params[:id]) %>
+<%= form_with(model: @user, local: true) do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+  
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <br/>
+    <%= @user.email %>
+    <br/>
+    <p>Thanks for visiting. Please provide us with .edu email and your desired role and disciplines.</p>
+    <br/>
+
+    <div class="field">
+      <%= form.label '.edu email' %>
+      <%= form.text_field :edu_email %>
+    </div>
+  
+    <div class="field">
+      <%= form.label 'Desired Role' %>
+      <%= form.select :desired_role, ['author', 'moderator', 'administrator', 'viewer'] %>
+    </div>
+
+    <div class="field">
+      <%= form.label 'Desired Disciplines' %>
+      <%= form.text_area :desired_disciplines %>
+    </div>
+
+
+  
+    <div class="actions">
+      <%= form.submit "Submit Request" %>
+    </div>
+  <% end %>
+
