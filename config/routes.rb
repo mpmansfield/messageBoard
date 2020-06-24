@@ -15,5 +15,7 @@ Rails.application.routes.draw do
   get 'users', :to => 'users#index'
   get 'user/:id', :to => 'users#show', as: 'user'
   patch 'user/:id', :to => 'users#update'
+  get 'user/:id/confirm/code', :to => 'users#confirmation'
+  get 'user/:id/registration_edit', :to => 'users#registration_edit', as: 'new_user'
 
 end

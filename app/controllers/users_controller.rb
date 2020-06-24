@@ -34,6 +34,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def confirmation(user_id, confirmation_code)
+    @user = User.find(user_id)
+    user_confirmation_code = @user.confirmation_code
+    if confirmation_code == user_confirmation_code
+      @user.confirmation_code = ""
+      @user.confirmed = true 
+      @user.save!
+    end
+      
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -42,7 +53,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:id, :email, :username, :role)
+      params.require(:user).permit(:id, :email, :username, :role, :edu_email, :desired_role, :desired_disciplines)
     end
 
 end
