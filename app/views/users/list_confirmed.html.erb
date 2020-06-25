@@ -1,0 +1,62 @@
+<% @users = User.all %>
+
+<h2>Users with unconfirmed .edu emails</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Edu Email</th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Organization</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+        
+        <% if !user.confirmed && user.edu_email != nil %>
+            <tr>
+                <td><%= user.email %></td>
+                <td><%= user.edu_email %></td>
+                <td><%= user.first_name %> <%= user.last_name %></td>
+                <td><%= user.title %></td>
+                <td><%= user.organization %></td>
+            </tr>
+        <% end %>
+    <% end %>    
+    <tbody>
+</table>
+
+<h2>Users with confirmed .edu emails awaiting role/discipline assignment</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Edu Email</th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Organization</th>
+            <th>Desired Role</th>
+            <th>Desired Disciplines</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+        
+        <% if user.confirmed && !user.assigned %>
+            <tr>
+                <td><%= user.email %></td>
+                <td><%= user.edu_email %></td>
+                <td><%= user.first_name %> <%= user.last_name %></td>
+                <td><%= user.title %></td>
+                <td><%= user.organization %></td>
+                <td><%= user.desired_role %></td>
+                <td><%= user.desired_disciplines %></td>
+                <td><%= link_to 'Assign', assign_path(user.id) %></td>
+            </tr>
+        <% end %>
+    <% end %>    
+    <tbody>
+</table>

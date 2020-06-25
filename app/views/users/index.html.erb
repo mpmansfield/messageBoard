@@ -5,30 +5,24 @@
 <table>
   <thead>
     <tr>
-      <th>Username</th>
       <th>Email</th>
       <th>Role</th>
       <th>.edu email</th>
       <th>Desired Role</th>
       <th>Desired Disciplines</th>
-
-
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.username %></td>
         <td><%= user.email %></td>
         <td><%= user.role %></td>
         <td><%= user.edu_email %></td>
         <td><%= user.desired_role %></td>
         <td><%= user.desired_disciplines %></td>
         <td><%= link_to 'Show', user_path(user) %></td>
-        <td><%= link_to 'Edit', edit_user_path(user.id) %></td>
-        
+        <td><%= link_to 'Edit', edit_user_path(user.id) %></td>    
       </tr>
     <% end %>
   </tbody>
