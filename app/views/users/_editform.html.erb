@@ -11,9 +11,17 @@
     </div>
   <% end %>
 
-  <%= @user.username %>
+  <%= @user.first_name %> <%= @user.last_name %>
   <br/>
   <%= @user.email %>
+  <br/>
+  <% if @user.confirmed %>
+          <%= @user.edu_email %>
+          <br/>
+  <% end %>
+  <%= @user.title %>
+  <br/>
+  <%= @user.organization %>
   <br/>
   <br/>
 

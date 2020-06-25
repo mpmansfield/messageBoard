@@ -15,10 +15,21 @@ class User < ApplicationRecord
     #Uncomment the section below if you want users to be created if they don't exist
       unless user
           user = User.create(
-            :email => data['email']
+            :email => data['email'],
+            :confirmation_token => SecureRandom.urlsafe_base64(15)
           )
       end
     user
+  end
+
+  def send_confirmation_email(user)
+    ConfirmMailer.with(user: user).confirmation_email.deliver
+    user.confirmation_sent_at = DateTime.now
+    user.save!
+  end
+
+  def send_assignment_email(user)
+    AssignMailer.with(user: user).assignment_email.deliver
   end
 
 end

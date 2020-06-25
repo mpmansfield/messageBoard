@@ -6,4 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.delete_all
-user = User.create! :email => 'messageboardminad@gmail.com', :role => 2, :username => 'admin', :edu_email => 'test@osu.edu'
+user = User.create! :email => 'messageboardminad@gmail.com', :role => 2, :edu_email => 'test@osu.edu'

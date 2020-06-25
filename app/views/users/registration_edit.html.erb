@@ -1,7 +1,7 @@
 <h1>Additional Information</h1>
 
 <% @user = User.find_by_id(params[:id]) %>
-<%= form_with(model: @user, local: true) do |form| %>
+<%= form_for(@user, url: registration_edit_path(@user), html: { method: :put }) do |form| %>
     <% if @user.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -35,8 +35,26 @@
       <%= form.text_area :desired_disciplines %>
     </div>
 
+    <div class="field">
+      <%= form.label 'First name' %>
+      <%= form.text_field :first_name %>
+    </div>
 
-  
+    <div class="field">
+      <%= form.label 'Last name' %>
+      <%= form.text_field :last_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label 'Organization' %>
+      <%= form.text_field :organization %>
+    </div>
+
+    <div class="field">
+      <%= form.label 'Title' %>
+      <%= form.text_field :title %>
+    </div>
+    
     <div class="actions">
       <%= form.submit "Submit Request" %>
     </div>

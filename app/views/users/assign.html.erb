@@ -1,0 +1,58 @@
+<h1>Assigning User</h1>
+
+<%= link_to 'User Profile', @user %> |
+<%= link_to 'Back', list_confirmed_path %>
+
+<% @user = User.find_by_id(params[:id]) %>
+<%= form_for(@user, url: assign_user_path(id: @user.id), html: { method: :put }) do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+  
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= @user.first_name %> <%= @user.last_name %>
+  <br/>
+  <%= @user.email %>
+  <br/>
+  <% if @user.confirmed %>
+          <%= @user.edu_email %>
+          <br/>
+  <% end %>
+  <%= @user.title %>
+  <br/>
+  <%= @user.organization %>
+  <br/>
+  <br/>
+
+  <table>
+  <tr><th>Desired Role</th><th>Desired Disciplines</th></tr>
+  <tr><td><%= @user.desired_role %></td><td><%= @user.desired_disciplines %></td></tr>
+  </table>
+
+  <br/>
+
+  <div class="field">
+    <%= form.label :role %>
+    <%= form.select :role, ['author', 'moderator', 'administrator', 'viewer'] %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Mark as assigned?" %>
+    <%= form.check_box :assigned, {}, "true", "false" %> <br />
+</div>
+
+    
+    <div class="actions">
+      <%= form.submit "Submit Request" %>
+    </div>
+
+
+  <% end %>
+
