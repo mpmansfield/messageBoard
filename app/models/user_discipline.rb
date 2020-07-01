@@ -1,0 +1,2 @@
+class UserDiscipline < ApplicationRecord
+end

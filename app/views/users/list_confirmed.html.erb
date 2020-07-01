@@ -53,8 +53,41 @@
                 <td><%= user.title %></td>
                 <td><%= user.organization %></td>
                 <td><%= user.desired_role %></td>
-                <td><%= user.desired_disciplines %></td>
+                <td><%= Discipline.find(user.desired_disciplines).title %></td>
                 <td><%= link_to 'Assign', assign_path(user.id) %></td>
+            </tr>
+        <% end %>
+    <% end %>    
+    <tbody>
+</table>
+
+<h2>Additional Unassigned Discipline Requests</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Edu Email</th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Organization</th>
+            <th>Role</th>
+            <th>Desired Disciplines</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% DisciplineRequest.all.each do |request| %>
+        <% user = User.find(request.user_id) %>
+        <% if user.assigned && !request.assigned %>
+            <tr>
+                <td><%= user.email %></td>
+                <td><%= user.edu_email %></td>
+                <td><%= user.first_name %> <%= user.last_name %></td>
+                <td><%= user.title %></td>
+                <td><%= user.organization %></td>
+                <td><%= user.role %></td>
+                <td><%= Discipline.find(request.discipline_id).title %></td>
+                <td><%= link_to 'Assign', assign_request_path(user.id, request.id) %></td>
             </tr>
         <% end %>
     <% end %>    

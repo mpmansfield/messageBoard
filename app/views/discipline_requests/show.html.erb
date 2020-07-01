@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @discipline_request.user_id %>
+</p>
+
+<p>
+  <strong>Discipline:</strong>
+  <%= @discipline_request.discipline_id %>
+</p>
+
+<%= link_to 'Edit', edit_discipline_request_path(@discipline_request) %> |
+<%= link_to 'Back', discipline_requests_path %>

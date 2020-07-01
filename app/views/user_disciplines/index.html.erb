@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User Disciplines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_disciplines.each do |user_discipline| %>
+      <tr>
+        <td><%= link_to 'Show', user_discipline %></td>
+        <td><%= link_to 'Edit', edit_user_discipline_path(user_discipline) %></td>
+        <td><%= link_to 'Destroy', user_discipline, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User Discipline', new_user_discipline_path %>
