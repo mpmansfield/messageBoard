@@ -7,7 +7,7 @@ class UserPolicy < UserActionPolicy
     end
   
     def update?
-      administrator?
+      true
     end
   
     def destroy?

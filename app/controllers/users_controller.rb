@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if confirmation_token == user_confirmation_token
-        @user.confirmation_token = ""
+        @user.confirmation_token = nil
         @user.confirmed = true 
         @user.confirmed_at = DateTime.now
         @user.save!
@@ -64,7 +64,28 @@ class UsersController < ApplicationController
     user_id = params[:id]
     @user = User.find(user_id)
     @user.update(user_params)
+
+    user_discipline = UserDiscipline.new
+    user_discipline.user_id = user_id
+    user_discipline.discipline_id = user_params[:desired_disciplines]
+    user_discipline.save!
+
     @user.send_assignment_email(@user)
+
+    redirect_to list_confirmed_path
+  end
+
+  def assign_user_request
+    user_id = params[:id]
+    user_discipline = UserDiscipline.new
+    user_discipline.user_id = user_id
+    user_discipline.discipline_id = user_params[:desired_disciplines]
+    user_discipline.save!
+    
+    @request = DisciplineRequest.find(params[:request_id])
+    @request.assigned = user_params[:assigned]
+    @request.save!
+
     redirect_to list_confirmed_path
   end
 

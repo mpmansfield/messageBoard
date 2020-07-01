@@ -1,6 +1,7 @@
 <h1>Additional Information</h1>
 
 <% @user = User.find_by_id(params[:id]) %>
+<% @disciplines = Discipline.all %>
 <%= form_for(@user, url: registration_edit_path(@user), html: { method: :put }) do |form| %>
     <% if @user.errors.any? %>
       <div id="error_explanation">
@@ -31,8 +32,8 @@
     </div>
 
     <div class="field">
-      <%= form.label 'Desired Disciplines' %>
-      <%= form.text_area :desired_disciplines %>
+      <%= form.label 'Desired Discipline (Primary: Additional Disciplines can be requested later)'  %>
+      <%= form.collection_select(:desired_disciplines, Discipline.all, :id, :title ) %>
     </div>
 
     <div class="field">

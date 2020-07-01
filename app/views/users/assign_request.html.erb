@@ -1,0 +1,66 @@
+<h1>Assigning User Additional Discipline</h1>
+
+<%= link_to 'User Profile', @user %> |
+<%= link_to 'Back', list_confirmed_path %>
+
+<% @user = User.find_by_id(params[:id]) %>
+<% @request = DisciplineRequest.find(params[:request]) %>
+<%= form_for(@user, url: assign_user_request_path(id: @user.id, request_id: @request.id), html: { method: :put }) do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+  
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= @user.first_name %> <%= @user.last_name %>
+  <br/>
+  <%= @user.email %>
+  <br/>
+  <% if @user.confirmed %>
+          <%= @user.edu_email %>
+          <br/>
+  <% end %>
+  <%= @user.title %>
+  <br/>
+  <%= @user.organization %>
+  <br/>
+  <br/>
+
+  <table>
+  <tr><th>Role</th><th>Discipline(s)</th><th>Requested Discipline</th></tr>
+  <tr><td><%= @user.role %></td>
+  <td>
+  <% @user_disciplines = UserDiscipline.where(user_id: @user.id) %>
+  <% @user_disciplines.each do |discipline| %>
+    <%= Discipline.find(discipline.discipline_id).title %><br/>
+  <% end %>
+  </td>
+  <td><%= Discipline.find(@request.discipline_id).title %></td></tr>
+  </table>
+
+  <br/>
+
+  <div class="field">
+      <%= form.label 'Assign Discipline'  %>
+      <%= form.collection_select(:desired_disciplines, Discipline.all, :id, :title ) %>
+    </div>
+
+  <div class="field">
+    <%= form.label "Mark as assigned?" %>
+    <%= form.check_box :assigned, {}, "true", "false" %> <br />
+</div>
+
+    
+    <div class="actions">
+      <%= form.submit "Assign Discipline To User" %>
+    </div>
+
+
+  <% end %>
+

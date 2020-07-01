@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Discipline Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Discipline</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @discipline_requests.each do |discipline_request| %>
+      <tr>
+        <td><%= discipline_request.user_id %></td>
+        <td><%= discipline_request.discipline_id %></td>
+        <td><%= link_to 'Show', discipline_request %></td>
+        <td><%= link_to 'Edit', edit_discipline_request_path(discipline_request) %></td>
+        <td><%= link_to 'Destroy', discipline_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Discipline Request', new_discipline_request_path %>

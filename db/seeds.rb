@@ -7,3 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.delete_all
 user = User.create! :email => 'messageboardminad@gmail.com', :role => 2, :edu_email => 'test@osu.edu'
+Discipline.create! :title => 'Cinema'
+Discipline.create! :title => 'Software Engineering'
+Discipline.create! :title => 'English'
+Discipline.create! :title => 'Philosophy'
+Board.create! :topic => 'Philosophy', :discipline_id => 4
+Board.create! :topic => 'Cinema', :discipline_id => 1
+Board.create! :topic => 'Software Engineering', :discipline_id => 2

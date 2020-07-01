@@ -1,0 +1,2 @@
+class DisciplineRequest < ApplicationRecord
+end

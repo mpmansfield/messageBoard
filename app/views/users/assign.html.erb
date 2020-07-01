@@ -33,7 +33,7 @@
 
   <table>
   <tr><th>Desired Role</th><th>Desired Disciplines</th></tr>
-  <tr><td><%= @user.desired_role %></td><td><%= @user.desired_disciplines %></td></tr>
+  <tr><td><%= @user.desired_role %></td><td><%= Discipline.find(@user.desired_disciplines).title %></td></tr>
   </table>
 
   <br/>
@@ -42,6 +42,11 @@
     <%= form.label :role %>
     <%= form.select :role, ['author', 'moderator', 'administrator', 'viewer'] %>
   </div>
+
+  <div class="field">
+      <%= form.label 'Desired Discipline (Primary: Additional Disciplines can be requested later)'  %>
+      <%= form.collection_select(:desired_disciplines, Discipline.all, :id, :title ) %>
+    </div>
 
   <div class="field">
     <%= form.label "Mark as assigned?" %>

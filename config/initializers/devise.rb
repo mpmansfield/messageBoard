@@ -300,5 +300,7 @@ Devise.setup do |config|
   #OmniAuth
   config.omniauth :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"], access_type: "online"
 
-  
+  config.omniauth :azure_oauth2, client_id: ENV["AZURE_CLIENT_ID"], client_secret: ENV["AZURE_CLIENT_SECRET"], tenant_id: ENV["AZURE_TENANT_ID"], access_type: "online"
+
+
 end

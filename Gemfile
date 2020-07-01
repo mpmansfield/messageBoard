@@ -63,3 +63,5 @@ gem 'omniauth-google-oauth2'
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'activerecord-session_store'
+
+gem 'omniauth-azure-oauth2'

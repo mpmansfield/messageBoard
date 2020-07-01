@@ -12,3 +12,13 @@
 <p>
   <%= "Role: #{@user.role}" %>
 </p>
+
+<p>
+Disciplines:
+<% @user_disciplines = UserDiscipline.where(user_id: @user.id) %>
+<br/>
+<% @user_disciplines.each do |discipline| %>
+  <%= Discipline.find(discipline.discipline_id).title %>
+  <br/>
+<% end %>
+</p>

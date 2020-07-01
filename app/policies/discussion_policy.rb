@@ -3,19 +3,19 @@
 class DiscussionPolicy < UserActionPolicy
 
     def new?
-      administrator? || moderator?
+      administrator? || moderator? || author?
     end
   
     def create?
-      administrator? || moderator?
+      administrator? || moderator? || author?
     end
   
     def edit?
-      administrator? || moderator?
+      administrator? || moderator? || author?
     end
   
     def update?
-      administrator? || moderator?
+      administrator? || moderator? || author?
     end
   
     def destroy?

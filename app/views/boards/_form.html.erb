@@ -21,6 +21,11 @@
     <%= form.text_field :description %>
   </div>
 
+  <div class="field">
+    <%= form.label 'Discipline'  %>
+    <%= form.collection_select(:discipline_id, Discipline.all, :id, :title ) %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -2,13 +2,13 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :registerable,
-         :recoverable, :rememberable, :omniauthable, omniauth_providers: [:google_oauth2]
+         :recoverable, :rememberable, :omniauthable, omniauth_providers: [:google_oauth2, :azure_oauth2]
 
   enum role: { author: 0, moderator: 1, administrator: 2, viewer: 3 }, _prefix: 'role'
   
   has_many :discussions
 
-  def self.from_omniauth(access_token)
+  def self.from_omniauth(access_token, provider)
     data = access_token.info
     user = User.where(email: data['email']).first
 
@@ -16,7 +16,8 @@ class User < ApplicationRecord
       unless user
           user = User.create(
             :email => data['email'],
-            :confirmation_token => SecureRandom.urlsafe_base64(15)
+            :confirmation_token => SecureRandom.urlsafe_base64(15),
+            :provider => provider
           )
       end
     user

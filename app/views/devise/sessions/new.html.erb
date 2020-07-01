@@ -1,10 +1,11 @@
 <h2>Log in</h2>
 
-<%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
-
+<%= button_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
 <br/>
 <br/>
+<%= button_to "Sign in with Microsoft", user_azure_oauth2_omniauth_authorize_path %>
+<br/>
 
 
 
-<%= render "devise/shared/links" %>
+
